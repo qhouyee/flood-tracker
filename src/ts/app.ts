@@ -1,4 +1,4 @@
-import { DomTreeHelper } from './utils/dom-tree-helper';
+import { DomTreeHelper } from './utils/dom_tree_helper';
 
 /**
  * This component acts as an entry point to render a web application.
