@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+ flood-tracker:
+    container_name: flood-tracker
+    image: flood-tracker:1.0.0
+    build:
+      context: .
+      target: development
+    ports:
+      - 3000:5173
+    volumes:
+      - ./src:/home/node/src

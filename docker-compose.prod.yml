@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+ flood-tracker:
+    container_name: flood-tracker
+    image: flood-tracker:1.0.0
+    build:
+      context: .
+      target: production
+    volumes:
+      - ./build:/home/node/build
