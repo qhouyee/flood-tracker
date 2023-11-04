@@ -1,4 +1,5 @@
 import { Container } from '../utils/container';
+import { Notification } from '../utils/notification';
 import { AccessClient } from '../utils/access_client';
 import { DropdownComponent, MeasuringStation } from './dropdown';
 
@@ -38,7 +39,10 @@ export class PanelComponent {
    * @throws {Error} If there is an error during data retrieval or dropdown initialisation.
   */ private async initialiseDropdown(): Promise<void> {
     try {
-      const stations = await this.getStationData();
+      let loadingNotice: Notification = new Notification("Retrieving station data from API...");
+      this.dropdownContainer.renderContent(loadingNotice.render());
+      let stations = await this.getStationData();
+      loadingNotice.hideNotification();
       let dropdownElement: DropdownComponent = new DropdownComponent("station-selector", stations);
       this.dropdownContainer.renderContent(dropdownElement.render());
     } catch (error) {
