@@ -1,4 +1,5 @@
 import { DomTreeHelper } from './utils/dom_tree_helper';
+import { PanelComponent } from './panel/panel';
 
 /**
  * This component acts as an entry point to render a web application.
@@ -11,8 +12,9 @@ export class App {
   */
   constructor() {
     // Set up a default app container
+    let panelElement: PanelComponent = new PanelComponent()
     this.rootElement = DomTreeHelper.createDiv("app");
-    this.rootElement.textContent = "Welcome to the Home Page!";
+    panelElement.render(this.rootElement);
   }
 
   /**

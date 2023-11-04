@@ -1,7 +1,8 @@
 import { describe, it, expect, afterEach } from 'vitest';
 
 import { App } from '../src/ts/app';
-import { resetDOMTree } from '../test.utils';
+import { resetDOMTree } from './test.utils';
+import { assertPanelContents } from './panel/panel.test';
 
 describe("App", () => {
   afterEach(() => {
@@ -19,6 +20,7 @@ describe("App", () => {
     // Assert that the elements exist and have the expected content
     expect(rootElement).not.toBeNull();
     expect(rootElement?.firstChild).not.toBeNull();
-    expect(rootElement?.firstChild!.textContent).toBe("Welcome to the Home Page!");
+    expect(rootElement?.firstChild).toBe(document.getElementById("panel"));
+    assertPanelContents(rootElement!)
   });
 });
