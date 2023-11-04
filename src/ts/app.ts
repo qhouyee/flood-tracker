@@ -3,7 +3,7 @@ import { DomTreeHelper } from './utils/dom_tree_helper';
 /**
  * This component acts as an entry point to render a web application.
  */
-class App {
+export class App {
   private rootElement: HTMLElement;
 
   /**
