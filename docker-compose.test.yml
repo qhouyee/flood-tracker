@@ -1,0 +1,8 @@
+version: '3.9'
+services:
+ flood-tracker:
+    container_name: flood-tracker-test
+    image: flood-tracker-test:1.0.0
+    build:
+      context: .
+      target: test

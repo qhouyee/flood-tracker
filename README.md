@@ -17,15 +17,22 @@ Deploy the website using one of the following scripts:
 The project can also be built on the Docker platform, and several configurations have been set up for different environments. 
 
 ### 2.2.1 Development
+With Docker running, navigate to the `<root>` directory and run the following code in a CLI:
+```
+docker compose -f "./docker-compose.test.yml" up -d --build 
+```
+Verify if the tests pass directly in the Docker container.
+
+### 2.2.2 Development
 In the development environment, hot reloading is enabled, and any changes to the code base will be reflected immediately on the website. To start the server, navigate to the `<root>` directory and run the following code in a CLI:
 ```
 docker-compose up -d
 ```
 If successfully run, the website will be available at `http://localhost:3000/`
 
-### 2.2.2 Production
+### 2.2.3 Production
 With Docker running, navigate to the `<root>` directory and run the following code in a CLI:
 ```
 docker compose -f "./docker-compose.prod.yml" up -d --build 
 ```
-The outputs will be available in the build folder for your deployment.
+The outputs will be available in the build folder for your deployment on a server.

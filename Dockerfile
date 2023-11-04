@@ -16,6 +16,16 @@ COPY ./index.html  .
 # Copy all the code into the src folder
 COPY ./src ./src
 
+# Test stage: Build image for testing environment
+#==================================================================================================
+FROM builder as test
+
+# Copy all test code into the tests folder
+COPY ./tests ./tests
+
+# Execute tests
+CMD ["npm", "run", "test"]
+
 # Development stage: Build image for development environment
 #==================================================================================================
 FROM builder as development

@@ -1,12 +1,20 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UK Flood Tracker</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/ts/app.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UK Flood Tracker</title>
+</head>
+
+<body>
+  <script type="module">
+    import { App } from '/src/ts/app.ts';
+
+    // Instantiate a new App and render its contents
+    let app = new App();
+    app.render();
+  </script>
+</body>
+
 </html>
