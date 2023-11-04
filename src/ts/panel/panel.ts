@@ -39,12 +39,22 @@ export class PanelComponent {
    * @throws {Error} If there is an error during data retrieval or dropdown initialisation.
   */ private async initialiseDropdown(): Promise<void> {
     try {
+      // Create a loading notification while waiting for data
       let loadingNotice: Notification = new Notification("Retrieving station data from API...");
       this.dropdownContainer.renderContent(loadingNotice.render());
+      // Once data is retrieve, hide the notification
       let stations = await this.getStationData();
       loadingNotice.hideNotification();
-      let dropdownElement: DropdownComponent = new DropdownComponent("station-selector", stations);
-      this.dropdownContainer.renderContent(dropdownElement.render());
+      // Populate a new dropdown component with the retrieved data
+      let dropdownElement: HTMLSelectElement = new DropdownComponent("station-selector", stations).render();
+      // Add an event listener to propagate the changes
+      dropdownElement.addEventListener("change", () => {
+        let selectedOption: HTMLOptionElement = dropdownElement.options[dropdownElement.selectedIndex];
+        // Extract this value to retrieve the associated measures for the API
+        console.log(selectedOption.value);
+      });
+      // Render the dropdown component as the next child of the container
+      this.dropdownContainer.renderContent(dropdownElement);
     } catch (error) {
       throw new Error(`Error initialising dropdown: ${error}`);
     }
