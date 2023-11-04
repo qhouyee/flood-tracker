@@ -4,27 +4,23 @@ import { DomTreeHelper } from './utils/dom_tree_helper';
  * This component acts as an entry point to render a web application.
  */
 class App {
-  private containerElement: HTMLElement;
+  private rootElement: HTMLElement;
 
   /**
    * Standard constructor to set up the app.
    */
   constructor() {
-    // Set up a default container
-    this.containerElement = DomTreeHelper.createDiv();
-    this.containerElement.textContent = 'Welcome to the Home Page!';
+    // Set up a default app container
+    this.rootElement = DomTreeHelper.createDiv();
+    this.rootElement.id = "app";
+    this.rootElement.textContent = 'Welcome to the Home Page!';
   }
 
   /**
     * Render the content onto the web page.
     */
   public render(): void {
-    // Appends all created container to the root element
-    let rootElement: HTMLElement = DomTreeHelper.getElementById('app');
-    rootElement.appendChild(this.containerElement)
+    // Appends all created container to the document body
+    document.body.appendChild(this.rootElement);
   }
 }
-
-// Instantiate a new App and render its contents
-let app = new App();
-app.render();
