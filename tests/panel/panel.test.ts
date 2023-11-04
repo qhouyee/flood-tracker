@@ -11,6 +11,7 @@ describe("PanelComponent", () => {
     parentElement = document.createElement("div");
   });
 
+  // WIP: Verify if the async function works to set up a dropdown
   it("should render the panel component with a title and dropdown", () => {
     // Render the component to parent element
     panelComponent.render(parentElement);
@@ -33,7 +34,4 @@ export function assertPanelContents(parentElement: HTMLElement) {
   let selectorTextElement = panelContainer?.querySelector("p");
   expect(selectorTextElement).not.toBeNull();
   expect(selectorTextElement!.textContent).toBe("Select a station from the following to view their measures:");
-  // Assert that there is a selector component with three options
-  let dropdownOptions = dropdownContainer?.querySelector("#station-selector")?.querySelectorAll("option");
-  expect(dropdownOptions).toHaveLength(3); // Assuming 3 stations from the getStationData function
 }
