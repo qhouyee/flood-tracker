@@ -72,9 +72,31 @@ export class PanelComponent {
     let measuringStations: MeasuringStation[] = result.items.map(item => {
       return {
         id: item.notation,
-        name: item.label,
+        name: this.transformString(item.label) + " [" + item.notation + "]",
       };
     });
     return measuringStations;
   }
+
+  /**
+   * Transform the string to a PascalCase syntax with space between them.
+   * @param {any} input - The input element to transform. Can be either an array or string.
+   * @returns {string} A label of the string.
+  */ private transformString(input: any): string {
+    if (typeof input === "string") {
+      // Split the input string into words using spaces as a delimiter
+      let words: string[] = input.toLowerCase().split(' ');
+      // Capitalise the first character of each word
+      let capitalisedWords: string[] = words.map(word => {
+        if (word.length === 0) {
+          return ''; // Handle multiple spaces
+        }
+        return word[0].toUpperCase() + word.slice(1);
+      });
+      // Join the capitalised words back together with spaces
+      return capitalisedWords.join(' ');
+    } // If the input is not a string, but rather an array, return its first value
+    else { return input[0]; }
+  }
 }
+
