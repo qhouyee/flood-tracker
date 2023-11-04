@@ -16,7 +16,7 @@ Deploy the website using one of the following scripts:
 ## 2.2 Docker builds
 The project can also be built on the Docker platform, and several configurations have been set up for different environments. 
 
-### 2.2.1 Development
+### 2.2.1 Test
 With Docker running, navigate to the `<root>` directory and run the following code in a CLI:
 ```
 docker compose -f "./docker-compose.test.yml" up -d --build 
