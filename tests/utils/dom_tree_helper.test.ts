@@ -9,15 +9,32 @@ describe('DomTreeHelper', () => {
    resetDOMTree()
   });
 
-  it('createDiv() should create a div element', () => {
-    let divElement: HTMLDivElement = DomTreeHelper.createDiv();
+  it('createDiv() should create a div element with an id', () => {
+    let id:string = "container"
+    let divElement: HTMLDivElement = DomTreeHelper.createDiv(id);
     expect(divElement).toBeInstanceOf(HTMLDivElement);
+    expect(divElement.getAttribute("id")).toBe(id);
   });
 
-  it('createHtmlElement() should create an HTML element of specified type', () => {
+  it('createDiv() should create a div element with no id', () => {
+    let divElement: HTMLDivElement = DomTreeHelper.createDiv();
+    expect(divElement).toBeInstanceOf(HTMLDivElement);
+    expect(divElement.getAttribute('id')).toBeNull();
+  });
+
+  it('createHtmlElement() should create an HTML element of specified type with id', () => {
+    let id:string = "container"
+    let elementType: string = 'span';
+    let spanElement: HTMLElement = DomTreeHelper.createHtmlElement(elementType, id);
+    expect(spanElement.tagName.toLowerCase()).toBe(elementType);
+    expect(spanElement.getAttribute("id")).toBe(id);
+  });
+  
+  it('createHtmlElement() should create an HTML element of specified type without id', () => {
     let elementType: string = 'span';
     let spanElement: HTMLElement = DomTreeHelper.createHtmlElement(elementType);
     expect(spanElement.tagName.toLowerCase()).toBe(elementType);
+    expect(spanElement.getAttribute('id')).toBeNull();
   });
 
   it('getElementById() should fetch an HTML element by ID', () => {

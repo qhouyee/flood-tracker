@@ -5,20 +5,23 @@ export class DomTreeHelper {
   
   /**
   * Create and return a new div element.
+  * @param {string} id - An optional id attribute to set for the div element.
   * @returns The created div element.
   */
-  static createDiv(): HTMLDivElement {
-    return <HTMLDivElement>this.createHtmlElement("div");
+  static createDiv(id?: string): HTMLDivElement {
+    return <HTMLDivElement>this.createHtmlElement("div", id);
   }
 
   /**
   * Create and return a new HTML element of specified type.
   * @param elementType - The type of HTML element to create.
+  * @param {string} id - An optional id attribute to set for the html element.
   * @returns The created HTML element.
   */
-  static createHtmlElement(elementType: string): HTMLElement {
-    let divElement = document.createElement(elementType);
-    return divElement;
+  static createHtmlElement(elementType: string, id?: string): HTMLElement {
+    let htmlElement = document.createElement(elementType);
+    if (id) { htmlElement.id = id; }
+    return htmlElement;
   }
 
   /**

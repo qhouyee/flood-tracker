@@ -11,8 +11,7 @@ export class App {
    */
   constructor() {
     // Set up a default app container
-    this.rootElement = DomTreeHelper.createDiv();
-    this.rootElement.id = "app";
+    this.rootElement = DomTreeHelper.createDiv("app");
     this.rootElement.textContent = 'Welcome to the Home Page!';
   }
 
