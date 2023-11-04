@@ -34,6 +34,7 @@ describe("Container", () => {
     // Assert that content element has been added to container element
     let containerElement: HTMLElement = container.getContainer();
     let renderedContent: HTMLParagraphElement = containerElement.querySelector("p")!;
+    expect(renderedContent).not.toBe(containerElement.firstElementChild);
     expect(renderedContent).not.toBeNull();
     expect(renderedContent.textContent).toBe(sampleText);
   });

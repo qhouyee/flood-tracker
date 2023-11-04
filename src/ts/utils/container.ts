@@ -6,7 +6,6 @@ import { DomTreeHelper } from './dom_tree_helper';
 */
 export class Container {
   private container: HTMLDivElement;
-  private contentContainer: HTMLDivElement;
   private validTypes: string[] = ["h1", "h2", "h3", "h4", "h5", "h6", "p"];
 
   /**
@@ -24,11 +23,8 @@ export class Container {
     // Set up the title
     let titleElement: HTMLElement = DomTreeHelper.createHtmlElement(titleType, id + "-title");
     titleElement.textContent = title;
-    // Set up the content
-    this.contentContainer = DomTreeHelper.createDiv();
     // Append them as children
     this.container.appendChild(titleElement);
-    this.container.appendChild(this.contentContainer);
   }
 
   /**
@@ -36,7 +32,7 @@ export class Container {
     * @param {HTMLElement} contentElement - The content element to be inserted into this container.
     * @returns {void}
   */ public renderContent(contentElement: HTMLElement): void {
-    this.contentContainer.appendChild(contentElement);
+    this.container.appendChild(contentElement);
   }
 
   /**
