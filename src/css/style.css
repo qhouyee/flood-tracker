@@ -45,6 +45,17 @@ select {
   margin-bottom: 2vh;
 }
 
+#analytics p {
+  position: absolute;
+  top: 45vh;
+  left: -1vw;
+  width: 50vh;
+  margin: 0 0;
+  font-style: italic;
+  font-size: 0.7rem;
+  transform: rotate(-90deg);
+}
+
 #chart {
   display: flex;
   justify-content: center;
