@@ -18,24 +18,46 @@ body {
   text-align: center;
 }
 
-#panel-title{
+#panel-title {
   color: white;
 }
 
-#station-container{
+#station-container {
   background-color: #e1e5f2;
-  height:80vh;
-  min-height:60vh;
-  width:100%;
+  width: 100%;
 }
 
 select {
   width: 30vw;
 }
 
-#chart{
-  display:flex;
+#chart {
+  display: flex;
   justify-content: center;
-  height: 60vh;
   margin: 0 5vw;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+table {
+  margin: 1vh auto 0;
+  margin-bottom: 5vh;
+  border: 2px solid;
+}
+
+th {
+  padding: 0.5vh 2vw !important;
+  background-color: #022b3a;
+  color: #ffffff;
+}
+
+th,
+td {
+  border: 1px solid;
+  padding: 0.1vh 2vw;
 }
