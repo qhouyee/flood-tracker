@@ -3,7 +3,7 @@ This git repository contains the code to deploy a web application to monitor wat
 
 *Figure 1: A screenshot of the Web App.*
 
-<img src="./public/app.jpg" alt="Screenshot of the Web App" width="200"/>
+<img src="./public/app.jpg" alt="Screenshot of the Web App" width="400"/>
 
 
 # 2. Code Builds
