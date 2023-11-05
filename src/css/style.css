@@ -16,10 +16,13 @@ a:hover {
 }
 
 #panel {
+  position: absolute;
+  top: 0px;
+  right: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80vw;
+  width: 40vw;
   height: 100vh;
   margin: 0 auto;
   background-color: #022b3a;
@@ -76,4 +79,10 @@ td {
   background-color: #022b3a;
   color: white;
   font-size: 0.5rem;
+}
+
+#map {
+  width: 60vw;
+  height: 100vh;
+  border: 1px solid #022b3a;
 }

@@ -1,5 +1,7 @@
-import '../css/style.css'
+import '../css/style.css';
+
 import { DomTreeHelper } from './utils/dom_tree_helper';
+import { MapHandler } from './map/map_handler';
 import { PanelComponent } from './panel/panel';
 
 /**
@@ -13,9 +15,12 @@ export class App {
   */
   constructor() {
     // Set up a default app container
-    let panelElement: PanelComponent = new PanelComponent()
     this.rootElement = DomTreeHelper.createDiv("app");
+    // Add panel
+    let panelElement: PanelComponent = new PanelComponent()
     panelElement.render(this.rootElement);
+    // Add map
+    this.rootElement.appendChild(MapHandler.initialiseMap());
   }
 
   /**
