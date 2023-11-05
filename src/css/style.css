@@ -7,6 +7,14 @@ body {
   padding: 0;
 }
 
+a {
+  color: #1F7A8C;
+}
+
+a:hover {
+  color: #e1e5f2;
+}
+
 #panel {
   display: flex;
   flex-direction: column;
@@ -45,8 +53,7 @@ td {
 }
 
 table {
-  margin: 1vh auto 0;
-  margin-bottom: 5vh;
+  margin: 1vh auto 5vh;
   border: 2px solid;
 }
 
@@ -60,4 +67,13 @@ th,
 td {
   border: 1px solid;
   padding: 0.1vh 2vw;
+}
+
+#attribution {
+  width: 100%;
+  margin: 0;
+  padding: 2vh 0;
+  background-color: #022b3a;
+  color: white;
+  font-size: 0.5rem;
 }
