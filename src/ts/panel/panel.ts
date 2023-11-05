@@ -2,6 +2,7 @@ import { Container } from '../utils/container';
 import { Notification } from '../utils/notification';
 import { AccessClient } from '../utils/access_client';
 import { DropdownComponent, MeasuringStation } from './dropdown';
+import { ChartComponent, WaterLevelReading } from './chart';
 
 /**
  * This component sets up a panel containing the web app's functionality.
@@ -47,14 +48,16 @@ export class PanelComponent {
       loadingNotice.hideNotification();
       // Populate a new dropdown component with the retrieved data
       let dropdownElement: HTMLSelectElement = new DropdownComponent("station-selector", stations).render();
-      // Add an event listener to propagate the changes
-      dropdownElement.addEventListener("change", () => {
-        let selectedOption: HTMLOptionElement = dropdownElement.options[dropdownElement.selectedIndex];
-        // Extract this value to retrieve the associated measures for the API
-        console.log(selectedOption.value);
-      });
       // Render the dropdown component as the next child of the container
       this.dropdownContainer.renderContent(dropdownElement);
+      // Create an empty chart element
+      let chartElement: ChartComponent = new ChartComponent();
+      this.dropdownContainer.renderContent(chartElement.render());
+      // Add an event listener to populate the chart whenever users select the option
+      dropdownElement.addEventListener("change", () => {
+        let selectedOption: HTMLOptionElement = dropdownElement.options[dropdownElement.selectedIndex];
+        this.populateChart(chartElement, selectedOption.value);
+      });
     } catch (error) {
       throw new Error(`Error initialising dropdown: ${error}`);
     }
@@ -97,6 +100,26 @@ export class PanelComponent {
       return capitalisedWords.join(' ');
     } // If the input is not a string, but rather an array, return its first value
     else { return input[0]; }
+  }
+
+    /**
+    * An async method to populate the chart with the readings of the specified station from the API.
+    * @returns {Promise<void>}
+  */ private async populateChart(chartElement: ChartComponent, stationId: string): Promise<void> {
+    // Dynamically generate the url for the water level readings
+    let apiUrl: string = `${AccessClient.floodApiUrl}/${stationId}/readings?_sorted&_limit=50&parameter=level`;
+    // Fetch the data and await for it to return results
+    console.log(`Retrieving readings from API for ${stationId}...`);
+    let result = await AccessClient.fetchData(apiUrl);
+    console.log("Readings have been successfully retrieved.")
+    // Process the readings into an array and update the chart
+    let readings: WaterLevelReading[] = result.items.map(item => {
+      return {
+        dateTime: item.dateTime,
+        value: item.value,
+      };
+    });
+    chartElement.update(readings)
   }
 }
 
