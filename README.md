@@ -1,5 +1,10 @@
 # 1. Introduction
-This git repository contains the code to deploy a web application to monitor water levels in the UK using the UK National Agency's [Real Time Flood-Monitoring API](https://environment.data.gov.uk/flood-monitoring/doc/reference).
+This git repository contains the code to deploy a web application to monitor water levels in the UK using the UK National Agency's [Real Time Flood-Monitoring API](https://environment.data.gov.uk/flood-monitoring/doc/reference). When deployed, the web application should look similar to Figure 1.   
+
+*Figure 1: A screenshot of the Web App.*
+
+<img src="./public/app.jpg" alt="Screenshot of the Web App" width="200"/>
+
 
 # 2. Code Builds
 The project can be built either locally or on the Docker platform, but it is recommended to use Docker.
