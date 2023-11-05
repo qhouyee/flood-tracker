@@ -21,11 +21,20 @@ describe("DropdownComponent", () => {
     let optionElements = dropdownElement.querySelectorAll("option");
     expect(dropdownElement).not.toBeNull();
     expect(dropdownElement.id).toBe(dropdownId);
-    expect(optionElements).toHaveLength(measuringStations.length);
+    // One more option for the initial placeholder
+    expect(optionElements).toHaveLength(measuringStations.length + 1);
     optionElements.forEach((option, index) => {
-      let station: MeasuringStation = measuringStations[index];
-      expect(option.value).toBe(station.id);
-      expect(option.textContent).toBe(station.name);
+      if (index === 0) {
+        expect(option.value).toBe("");
+        expect(option.disabled).toBe(true);
+        expect(option.selected).toBe(true);
+
+      }
+      else {
+        let station: MeasuringStation = measuringStations[index - 1];
+        expect(option.value).toBe(station.id);
+        expect(option.textContent).toBe(station.name);
+      }
     });
   });
 });
