@@ -3,6 +3,8 @@ import { Notification } from '../utils/notification';
 import { AccessClient } from '../utils/access_client';
 import { DropdownComponent, MeasuringStation } from './dropdown';
 import { ChartComponent, WaterLevelReading } from './chart';
+import { TableComponent } from './table';
+import { Attribution } from './attribution';
 
 /**
  * This component sets up a panel containing the web app's functionality.
@@ -21,6 +23,8 @@ export class PanelComponent {
     this.panelContainer.renderContent(this.dropdownContainer.getContainer());
     // Initialise the dropdown options with API data
     this.initialiseDropdown();
+    let attribution: Attribution = new Attribution();
+    this.panelContainer.renderContent(attribution.render());
   }
 
   /**
@@ -53,10 +57,13 @@ export class PanelComponent {
       // Create an empty chart element
       let chartElement: ChartComponent = new ChartComponent();
       this.dropdownContainer.renderContent(chartElement.render());
+      // Create an empty table element
+      let tableElement: TableComponent = new TableComponent();
+      this.dropdownContainer.renderContent(tableElement.render());
       // Add an event listener to populate the chart whenever users select the option
       dropdownElement.addEventListener("change", () => {
         let selectedOption: HTMLOptionElement = dropdownElement.options[dropdownElement.selectedIndex];
-        this.populateChart(chartElement, selectedOption.value);
+        this.populateVisualisation(chartElement, tableElement, selectedOption.value);
       });
     } catch (error) {
       throw new Error(`Error initialising dropdown: ${error}`);
@@ -103,9 +110,12 @@ export class PanelComponent {
   }
 
     /**
-    * An async method to populate the chart with the readings of the specified station from the API.
+    * An async method to populate the chart and table with the readings of the specified station from the API.
+   * @param {TableComponent} chartElement - The chart element to populate.
+   * @param {ChartComponent} tableElement - The table element to populate.
+   * @param {string} id - The station ID for retrieving readings.
     * @returns {Promise<void>}
-  */ private async populateChart(chartElement: ChartComponent, stationId: string): Promise<void> {
+  */ private async populateVisualisation(chartElement: ChartComponent, tableElement: TableComponent, stationId: string): Promise<void> {
     // Dynamically generate the url for the water level readings
     let apiUrl: string = `${AccessClient.floodApiUrl}/${stationId}/readings?_sorted&_limit=50&parameter=level`;
     // Fetch the data and await for it to return results
@@ -119,7 +129,8 @@ export class PanelComponent {
         value: item.value,
       };
     });
-    chartElement.update(readings)
+    chartElement.update(readings);
+    tableElement.update(readings);
   }
 }
 
