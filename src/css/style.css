@@ -48,6 +48,8 @@ select {
 #chart {
   display: flex;
   justify-content: center;
+  max-height: 60vh;
+  max-width: 75vw;
   margin: 0 5vw;
 }
 
