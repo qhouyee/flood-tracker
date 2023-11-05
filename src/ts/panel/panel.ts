@@ -4,6 +4,7 @@ import { AccessClient } from '../utils/access_client';
 import { DropdownComponent, MeasuringStation } from './dropdown';
 import { ChartComponent, WaterLevelReading } from './chart';
 import { TableComponent } from './table';
+import { Attribution } from './attribution';
 
 /**
  * This component sets up a panel containing the web app's functionality.
@@ -22,6 +23,8 @@ export class PanelComponent {
     this.panelContainer.renderContent(this.dropdownContainer.getContainer());
     // Initialise the dropdown options with API data
     this.initialiseDropdown();
+    let attribution: Attribution = new Attribution();
+    this.panelContainer.renderContent(attribution.render());
   }
 
   /**
