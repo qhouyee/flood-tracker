@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 /**
  * This component provides methods for accessing the API.
@@ -12,13 +12,13 @@ export class AccessClient {
     * @returns {Promise<any>}
   */ static async fetchData(apiUrl: string): Promise<any> {
     try {
-      let response: axios.AxiosResponse = await axios.get(apiUrl);
+      let response: AxiosResponse = await axios.get(apiUrl);
       if (response.status === 200) {
         return response.data;
       } else {
         throw new Error(`Failed to fetch data. Status code: ${response.status}`);
       }
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(`Failed to fetch data: ${error.message}`);
     }
   }

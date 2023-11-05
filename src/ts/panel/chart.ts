@@ -23,7 +23,7 @@ export class ChartComponent {
   */ constructor() {
     // Set up the panel container
     this.chartContainer = DomTreeHelper.createDiv("chart");
-    this.initChart()
+    this.chart = this.initChart();
   }
 
   /**
@@ -46,13 +46,13 @@ export class ChartComponent {
 
   /**
    * Initialise a new empty chart.
-   * @returns {void}
-  */ private initChart(): void {
+   * @returns {Chart} the chart object.
+  */ private initChart(): Chart {
     // Create a canvas for the chart and append it to the container
     let chartElement: HTMLCanvasElement = <HTMLCanvasElement>DomTreeHelper.createHtmlElement("canvas", "readings");
     this.chartContainer.appendChild(chartElement);
     // Initialise an empty chart
-    this.chart = new Chart(
+    return new Chart(
       chartElement,
       {
         type: "line",

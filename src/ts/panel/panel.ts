@@ -72,7 +72,7 @@ export class PanelComponent {
     console.log("List of measurement station have been successfully retrieved.")
     // Note that the API return the station metadata in the "items" key
     // Parse the results into an array of measuring station
-    let measuringStations: MeasuringStation[] = result.items.map(item => {
+    let measuringStations: MeasuringStation[] = result.items.map((item: any) => {
       return {
         id: item.notation,
         name: this.transformString(item.label) + " [" + item.notation + "]",
@@ -113,7 +113,7 @@ export class PanelComponent {
     let result = await AccessClient.fetchData(apiUrl);
     console.log("Readings have been successfully retrieved.")
     // Process the readings into an array and update the chart
-    let readings: WaterLevelReading[] = result.items.map(item => {
+    let readings: WaterLevelReading[] = result.items.map((item: any) => {
       return {
         dateTime: item.dateTime,
         value: item.value,
