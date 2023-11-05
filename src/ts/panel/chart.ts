@@ -1,4 +1,5 @@
 import Chart from 'chart.js/auto';
+import 'chartjs-adapter-date-fns';
 
 import { DomTreeHelper } from '../utils/dom_tree_helper';
 
@@ -37,7 +38,8 @@ export class ChartComponent {
    * @param {WaterLevelReading[]} readings - An array of the water level readings returned from API. 
    * @returns {void}.
   */ public update(readings: WaterLevelReading[]): void {
-    this.chart.data.labels = readings.map(reading => reading.dateTime);
+    // Parse the readings as date time values
+    this.chart.data.labels = readings.map(reading => Date.parse(reading.dateTime));
     this.chart.data.datasets[0].data = readings.map(reading => reading.value);
     this.chart.update();
   }
@@ -63,6 +65,16 @@ export class ChartComponent {
           ]
         },
         options: {
+          scales: {
+            x: {
+              type: "timeseries",
+              time: {
+                displayFormats: {
+                  hour: 'PPpp',
+                }
+              }
+            }
+          },
           plugins: {
             title: {
               display: true,
