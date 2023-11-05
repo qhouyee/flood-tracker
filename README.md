@@ -40,4 +40,16 @@ With Docker running, navigate to the `<root>` directory and run the following co
 ```
 docker compose -f "./docker-compose.prod.yml" up -d --build 
 ```
-The outputs will be available in the build folder for your deployment on a server.
+The outputs will be available in the build folder for your deployment on a server. 
+
+If you wish to run the build locally without a server, please transfer the generated `css` and `js` file into the `index.html` file. If the `index.html` attempts to make any path references, a `Cross-Origin Resource Sharing (CORS)` error will be encountered. The final html file should look like the following:
+
+```
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UK Flood Tracker</title>
+  <style>IMPORT ALL CSS SHEETS HERE</style>
+  <script type="module">IMPORT ALL JAVASCRIPT CODE HERE</script>
+  ...
+```
