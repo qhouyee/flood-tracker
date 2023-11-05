@@ -39,6 +39,12 @@ select {
   width: 30vw;
 }
 
+#analytics {
+  overflow: auto;
+  max-height: 68vh;
+  margin-bottom: 2vh;
+}
+
 #chart {
   display: flex;
   justify-content: center;
