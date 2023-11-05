@@ -51,6 +51,7 @@ export class ChartComponent {
     // Create a canvas for the chart and append it to the container
     let chartElement: HTMLCanvasElement = <HTMLCanvasElement>DomTreeHelper.createHtmlElement("canvas", "readings");
     this.chartContainer.appendChild(chartElement);
+    Chart.defaults.color = "#000304";
     // Initialise an empty chart
     return new Chart(
       chartElement,
@@ -70,16 +71,23 @@ export class ChartComponent {
               type: "timeseries",
               time: {
                 displayFormats: {
-                  hour: 'PPpp',
-                }
-              }
+                  hour: "PPpp",
+                },
+              },
+              grid: {
+                color: "#D7D7D7"
+              },
             },
             y: {
               ticks: {
                 callback: function (value) {
                   return value + " m";
                 }
-              }
+              },
+              grid: {
+                display: true,
+                color: "#D7D7D7"
+              },
             }
           },
           plugins: {
