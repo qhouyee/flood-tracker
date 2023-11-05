@@ -54,12 +54,15 @@ export class PanelComponent {
       let dropdownElement: HTMLSelectElement = new DropdownComponent("station-selector", stations).render();
       // Render the dropdown component as the next child of the container
       this.dropdownContainer.renderContent(dropdownElement);
+      // Create a new analytic container for all the analytic visualisation
+      let analyticContainer:Container = new Container("analytics", "p", "scroll to view readings");
+      this.dropdownContainer.renderContent(analyticContainer.getContainer());
       // Create an empty chart element
       let chartElement: ChartComponent = new ChartComponent();
-      this.dropdownContainer.renderContent(chartElement.render());
+      analyticContainer.renderContent(chartElement.render());
       // Create an empty table element
       let tableElement: TableComponent = new TableComponent();
-      this.dropdownContainer.renderContent(tableElement.render());
+      analyticContainer.renderContent(tableElement.render());
       // Add an event listener to populate the chart whenever users select the option
       dropdownElement.addEventListener("change", () => {
         let selectedOption: HTMLOptionElement = dropdownElement.options[dropdownElement.selectedIndex];
