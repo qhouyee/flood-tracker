@@ -1,3 +1,4 @@
+import '../css/style.css'
 import { DomTreeHelper } from './utils/dom_tree_helper';
 import { PanelComponent } from './panel/panel';
 
